@@ -11,22 +11,24 @@ export default class Table {
     getData() {
         this.api.getSMS()
             .then(res => {
-                this.data = res;
+                console.log(res);
+
+                this.data = res.result;
                 this.renderData();
             })
     }
 
     renderData() {
         this.smsTBody.innerHTML = '';
-        this.data.forEach(row => {
+        this.data && this.data.forEach(row => {
             this.smsTBody.innerHTML += `
                     <tr>
                         <th scope="row">${row.id}</th>
-                        <td>${row.from}</td>
-                        <td>${row.to}</td>
+                        <td>${row.fromNumber}</td>
+                        <td>${row.toNumber}</td>
                         <td>${row.content}</td>
-                        <td>${new Date(row.date).toLocaleDateString("en-US")}</td>
-                        <td>${row.status}</td>
+                        <td>${new Date(+row.date).toLocaleDateString("en-US")}</td>
+                        <td>${row.status ? true : false}</td>
                     </tr>`
         })
     }

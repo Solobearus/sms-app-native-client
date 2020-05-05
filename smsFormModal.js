@@ -47,7 +47,7 @@ export default class SmsFormModal {
             this.api.sendSMS(sms)
                 .then(res => {
                     this.onCloseCB(res.sms)
-                    if (res.success) {
+                    if (res.sms.status) {
                         this.submitResultModal.show('sms successed', () => this.hide())
                     } else {
                         this.submitResultModal.show('sms failed', () => this.hide())
