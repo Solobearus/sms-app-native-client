@@ -1,7 +1,7 @@
-import SmsFormModal from './smsFormModal.js'
-import SubmitResultModal from './submitResultModal.js'
-import Table from './smsTable.js'
-import api from './api.js'
+import SmsFormModal from './elements/smsFormModal.js'
+import SubmitResultModal from './elements/submitResultModal.js'
+import Table from './elements/smsTable.js'
+import api from './api/api.js'
 
 class App {
     constructor() {
