@@ -28,7 +28,7 @@ export default class Table {
                         <td>${row.toNumber}</td>
                         <td>${row.content}</td>
                         <td>${new Date(+row.date).toLocaleDateString("en-US")}</td>
-                        <td>${row.status ? true : false}</td>
+                        <td class="${row.status ? 'text-success' : 'text-danger'}">${row.status ? 'success' : 'failure'}</td>
                     </tr>`
         })
     }
@@ -42,7 +42,7 @@ export default class Table {
                 <td>${row.to}</td>
                 <td>${row.content}</td>
                 <td>${new Date(row.date).toLocaleDateString("en-US")}</td>
-                <td>${row.status}</td>
+                <td class="${row.status ? 'text-success' : 'text-danger'}">${row.status ? 'success' : 'failure'}</td>
             </tr>`
     }
 }
