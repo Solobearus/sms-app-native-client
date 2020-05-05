@@ -9,7 +9,6 @@ class API {
             })
             .then((res) => res.json())
             .catch(err => {
-                console.error(err)
                 throw new Error(err)
             })
     }
@@ -22,7 +21,6 @@ class API {
             })
             .then((res) => res.json())
             .catch(err => {
-                console.error(err)
                 throw new Error(err)
             })
     }

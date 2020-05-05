@@ -11,8 +11,6 @@ export default class Table {
     getData() {
         this.api.getSMS()
             .then(res => {
-                console.log(res);
-
                 this.data = res.result;
                 this.renderData();
             })
