@@ -1,7 +1,7 @@
 export default class SmsFormModal {
-    constructor(api, onCloseCB, submitResultModal) {
+    constructor(api, onCloseCB, popUp) {
         this.api = api;
-        this.submitResultModal = submitResultModal;
+        this.popUp = popUp;
         this.fromInput = document.querySelector('#smsFromInput');
         this.toInput = document.querySelector('#smsToInput');
         this.contentInput = document.querySelector('#smsContentInput');
@@ -40,20 +40,19 @@ export default class SmsFormModal {
         const isFormValid = this.isFormValid(sms);
 
         if (!isFormValid.valid) {
-            this.submitResultModal.show(isFormValid.msg, () => {});
+            this.popUp.show(isFormValid.msg);
         } else {
             this.api
                 .sendSMS(sms)
                 .then(res => {
                     this.onCloseCB(res.sms);
                     if (res.sms.status) {
-                        this.submitResultModal.show('sms successed', () => this.hide());
+                        this.popUp.show('sms successed').then(() => this.hide());
                     } else {
-                        this.submitResultModal.show('sms failed', () => this.hide());
+                        this.popUp.show('sms failed').then(() => this.hide());
                     }
                 })
-
-                .catch(err => this.submitResultModal.show('server err : ' + err, () => this.hide()));
+                .catch(err => this.popUp.show('server err : ' + err).then(() => this.hide()));
         }
     }
 }

@@ -1,15 +1,15 @@
 import SmsFormModal from './elements/smsFormModal.js';
-import SubmitResultModal from './elements/submitResultModal.js';
+import popUp from './elements/popUp.js';
 import Table from './elements/smsTable.js';
 import api from './api/api.js';
-import GenerateSMSPDF from './elements/generateSMSPDF.js';
+import generateSMSPDFBtn from './elements/generateSMSPDFBtn.js';
 
 class App {
     constructor() {
         this.table = new Table(api);
-        this.submitResultModal = new SubmitResultModal();
-        this.generateSMSPDF = new GenerateSMSPDF(api);
-        this.form = new SmsFormModal(api, row => this.onSmsSent(row), this.submitResultModal);
+        this.popUp = new popUp();
+        this.generateSMSPDFBtn = new generateSMSPDFBtn(api);
+        this.form = new SmsFormModal(api, this.onSmsSent.bind(this), this.popUp);
     }
 
     onSmsSent(row) {
@@ -17,4 +17,4 @@ class App {
     }
 }
 
-const app = new App();
+new App();
