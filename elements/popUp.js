@@ -1,6 +1,6 @@
 export default class popUp {
     constructor() {
-        this.popUp = $('#popUp');
+        this.popUp = $('#popUpModal');
         this.popUpButton = document.querySelector('#popUpButton');
         this.popUpMessege = document.querySelector('#popUpMessege');
 
@@ -9,6 +9,7 @@ export default class popUp {
 
     show(msg) {
         return new Promise((resolve, reject) => {
+            console.log('test');
             this.popUpMessege.innerText = msg;
             this.popUp.modal('show');
             resolve();
