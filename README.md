@@ -3,5 +3,5 @@
 
 - clone the repository
 - npm i
-- npm start
+- run index.html in your browser or run live server from vscode in the index.html location.
 - have fun 🥂🍾
