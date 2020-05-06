@@ -2,14 +2,14 @@ export default class popUp {
     constructor() {
         this.popUp = $('#popUp');
         this.popUpButton = document.querySelector('#popUpButton');
-        this.messege = document.querySelector('#popUpMessege');
+        this.popUpMessege = document.querySelector('#popUpMessege');
 
         this.popUpButton.addEventListener('click', () => this.hide());
     }
 
-    show(popUpMessege) {
+    show(msg) {
         return new Promise((resolve, reject) => {
-            this.popUpMessege.innerText = popUpMessege;
+            this.popUpMessege.innerText = msg;
             this.popUp.modal('show');
             resolve();
         });
