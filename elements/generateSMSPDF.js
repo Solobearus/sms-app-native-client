@@ -1,6 +1,6 @@
 export default class GenerateSMSPDF {
     constructor(api) {
-        this.generatePDFBtn = document.querySelector("#generatePDF");
+        this.generatePDFBtn = document.querySelector('#generatePDF');
         this.generatePDFBtn.addEventListener('click', () => this.generatePDF());
         this.api = api;
     }

@@ -1,4 +1,3 @@
-
 export default class Table {
     data = [];
 
@@ -9,26 +8,28 @@ export default class Table {
     }
 
     getData() {
-        this.api.getSMS()
-            .then(res => {
-                this.data = res.result;
-                this.renderData();
-            })
+        this.api.getSMS().then(res => {
+            this.data = res.result;
+            this.renderData();
+        });
     }
 
     renderData() {
         this.smsTBody.innerHTML = '';
-        this.data && this.data.forEach(row => {
-            this.smsTBody.innerHTML += `
+        this.data &&
+            this.data.forEach(row => {
+                this.smsTBody.innerHTML += `
                     <tr>
                         <th scope="row">${row.id}</th>
                         <td>${row.fromNumber}</td>
                         <td>${row.toNumber}</td>
                         <td>${row.content}</td>
-                        <td>${new Date(+row.date).toLocaleDateString("en-US")}</td>
-                        <td class="${row.status ? 'text-success' : 'text-danger'}">${row.status ? 'success' : 'failure'}</td>
-                    </tr>`
-        })
+                        <td>${new Date(+row.date).toLocaleDateString('en-US')}</td>
+                        <td class="${row.status ? 'text-success' : 'text-danger'}">${
+                    row.status ? 'success' : 'failure'
+                }</td>
+                    </tr>`;
+            });
     }
 
     addToTable(row) {
@@ -39,9 +40,8 @@ export default class Table {
                 <td>${row.from}</td>
                 <td>${row.to}</td>
                 <td>${row.content}</td>
-                <td>${new Date(row.date).toLocaleDateString("en-US")}</td>
+                <td>${new Date(row.date).toLocaleDateString('en-US')}</td>
                 <td class="${row.status ? 'text-success' : 'text-danger'}">${row.status ? 'success' : 'failure'}</td>
-            </tr>`
+            </tr>`;
     }
 }
-
