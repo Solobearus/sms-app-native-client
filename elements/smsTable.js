@@ -8,7 +8,7 @@ export default class Table {
     }
 
     getData() {
-        this.api.getSMS().then(res => {
+        this.api.getAllSMS().then(res => {
             this.data = res.result;
             this.renderData();
         });
@@ -18,23 +18,17 @@ export default class Table {
         this.smsTBody.innerHTML = '';
         this.data &&
             this.data.forEach(row => {
-                this.smsTBody.innerHTML += `
-                    <tr>
-                        <th scope="row">${row.id}</th>
-                        <td>${row.fromNumber}</td>
-                        <td>${row.toNumber}</td>
-                        <td>${row.content}</td>
-                        <td>${new Date(+row.date).toLocaleDateString('en-US')}</td>
-                        <td class="${row.status ? 'text-success' : 'text-danger'}">${
-                    row.status ? 'success' : 'failure'
-                }</td>
-                    </tr>`;
+                this.smsTBody.innerHTML += this.createRow(row);
             });
     }
 
     addToTable(row) {
         this.data.push(row);
-        this.smsTBody.innerHTML += `
+        this.smsTBody.innerHTML += this.createRow(row);
+    }
+
+    createRow(row) {
+        return `
             <tr>
                 <th scope="row">${row.id}</th>
                 <td>${row.from}</td>
@@ -42,6 +36,7 @@ export default class Table {
                 <td>${row.content}</td>
                 <td>${new Date(row.date).toLocaleDateString('en-US')}</td>
                 <td class="${row.status ? 'text-success' : 'text-danger'}">${row.status ? 'success' : 'failure'}</td>
-            </tr>`;
+            </tr>
+        `;
     }
 }

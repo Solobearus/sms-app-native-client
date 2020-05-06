@@ -1,5 +1,15 @@
 class API {
-    static sendSMS(sms) {
+    getAllSMS() {
+        return fetch(`http://localhost:3000/sms`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        })
+            .then(res => res.json())
+            .catch(err => {
+                throw new Error(err);
+            });
+    }
+    sendSMS(sms) {
         return fetch(`http://localhost:3000/sms/send`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -11,18 +21,7 @@ class API {
             });
     }
 
-    static getSMS() {
-        return fetch(`http://localhost:3000/sms`, {
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        })
-            .then(res => res.json())
-            .catch(err => {
-                throw new Error(err);
-            });
-    }
-
-    static getSMSPDF() {
+    getSMSPDF() {
         return fetch(`http://localhost:3000/smspdf`, {
             method: 'GET'
         })
@@ -35,7 +34,7 @@ class API {
             });
     }
 
-    static download(blob, format = 'pdf', name = 'default_name') {
+    download(blob, format = 'pdf', name = 'default_name') {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -45,5 +44,5 @@ class API {
         a.remove();
     }
 }
-
-export default API;
+const api = new API();
+export default api;
