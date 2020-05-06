@@ -9,11 +9,15 @@ class App {
         this.table = new Table(api);
         this.popUp = new popUp();
         this.generateSMSPDFBtn = new generateSMSPDFBtn(api);
-        this.form = new SmsFormModal(api, this.onSmsSent.bind(this), this.popUp);
+        this.form = new SmsFormModal(api, this.onSmsSent.bind(this), this.showPopUp.bind(this));
     }
 
     onSmsSent(row) {
         this.table.addToTable(row);
+    }
+
+    showPopUp(msg) {
+        return this.popUp.show(msg);
     }
 }
 

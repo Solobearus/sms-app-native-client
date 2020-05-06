@@ -26,8 +26,6 @@ export default class Table {
     }
 
     createRow(row) {
-        console.log(row);
-
         return `
             <tr>
                 <th scope="row">${row.id}</th>
